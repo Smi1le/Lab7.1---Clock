@@ -1,9 +1,9 @@
-
+#define _USE_MATH_DEFINES
 #include <SFML/Graphics.hpp>
 #include <iostream> 
 #include <cmath>
 #include <vector>
-
+#include <math.h>
 #include "clock.h"
 
 using namespace std;
@@ -27,7 +27,7 @@ void createClock(myClock &clock) {
 	clock.secondHand->setFillColor(Color::Blue);
 
 	clock.circle = new CircleShape(RADIUS);
-	clock.circle->setPointCount(2000);
+	clock.circle->setPointCount(NUMBER_POINTS_POLYGON);
 	clock.circle->setOrigin(RADIUS, RADIUS);
 	clock.circle->setPosition(WINDOW_SIZE.x / 2, WINDOW_SIZE.y / 2);
 	clock.circle->setOutlineThickness(4);
@@ -46,8 +46,8 @@ void createHand(RectangleShape &shape, Vector2f size) {
 
 void initPosition(myClock & clock) {
 	for (int i = 0; i < 12; i++) {
-		float x = WINDOW_SIZE.x / 2 + RADIUS * cos(i * 30 * 3.14f / 180);
-		float y = WINDOW_SIZE.y / 2 + RADIUS * sin(i * 30 * 3.14f / 180);
+		float x = WINDOW_SIZE.x / 2 + RADIUS * cos(i * 30 * M_PI / 180);
+		float y = WINDOW_SIZE.y / 2 + RADIUS * sin(i * 30 * M_PI / 180);
 		float angle = (i + 3) * 30;
 		clock.positionDelimiter.push_back(Vector3f(x, y, angle));
 	}

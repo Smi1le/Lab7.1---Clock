@@ -14,3 +14,5 @@ const sf::Vector2f SIZE_BIG_DIVIDE = { 6, 40 };
 const sf::Vector2f SIZE_SMALL_DIVIDE = { 4, 25 };
 
 const int RADIUS = 280;
+
+const unsigned int NUMBER_POINTS_POLYGON = 2000;

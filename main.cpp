@@ -29,10 +29,10 @@ void drawing(RenderWindow & window, myClock & clock) {
 	random_device rd;
 	mt19937 gen(rd());
 	uniform_int_distribution<> dist(1, 256);
-	int randomNumber1 = dist(gen);
-	int randomNumber2 = dist(gen);
-	int randomNumber3 = dist(gen);
-	window.clear(Color::Color(randomNumber1, randomNumber2, randomNumber3));
+	int rangeRed = dist(gen);
+	int rangeGreen = dist(gen);
+	int rangeBlue = dist(gen);
+	window.clear(Color::Color(rangeRed, rangeGreen, rangeBlue));
 	window.draw(*clock.circle);
 	window.draw(*clock.hourHand);
 	window.draw(*clock.minuteHand);
@@ -41,6 +41,14 @@ void drawing(RenderWindow & window, myClock & clock) {
 	window.display();
 }
 
+void memoryCleaning(myClock & clock) {
+	delete clock.circle;
+	delete clock.hourHand;
+	delete clock.minuteHand;
+	delete clock.secondHand;
+	delete clock.delimiter;
+	delete clock.window;
+}
 
 
 
@@ -61,6 +69,7 @@ int main(){
 		drawing(window, *clock);
 
 	}
-
+	memoryCleaning(*clock);
+	delete clock;
 	return 0;
 }
